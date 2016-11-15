@@ -8,11 +8,15 @@ angular.module('ngMaps')
         events: '=',      // object {event:function(), event:function()}
         options: '=',     // function() { return {} }
       },
-      controller: function($scope) {
+      controller: function($scope, $rootScope) {
         // This function allows child directives to access the map
         this.getMap = function() {
           return $scope.map;
         };
+
+        $scope.$watch('map',function(newMap, oldMap) {
+          $rootScope.$broadcast($scope.map);
+        });
       },
       transclude: true,
       link: function($scope, elem, attrs) {
