@@ -15,7 +15,7 @@ angular.module('ngMaps')
         };
 
         $scope.$watch('map',function(newMap, oldMap) {
-          $rootScope.$broadcast($scope.map);
+          $rootScope.$broadcast('ngMaps:mapInitialized',$scope.map);
         });
       },
       transclude: true,
